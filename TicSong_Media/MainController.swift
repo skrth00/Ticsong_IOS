@@ -29,7 +29,6 @@ class MainController: UIViewController {
             if(!indexList.contains(index)){
                 indexList.append(index)
                 list.append((title:arrayTitle[index],song:arraySong[index],start:100))
-                
             }
         }
         

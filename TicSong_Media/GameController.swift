@@ -197,6 +197,7 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     // 노래 재생 하는 함수
     
     func playMusic(){
+        timer.invalidate()
         musicSec = 0
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(GameController.counter), userInfo: nil, repeats:true)
         audioPlayer.play()
@@ -205,7 +206,6 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     func nextStageInit(){
         stage += 1
         life = 3
-        
         alertTest(songTitle: roundList[stage-1].title)
         audioPlayer.play()
     }
