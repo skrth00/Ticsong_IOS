@@ -47,7 +47,6 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     var score : Int = 0
     var life : Int = 3
     var stage : Int = 0
-    
     var item : Int = 3
     
     //MARK: 생명주기
@@ -174,12 +173,10 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         musicSec += 1
         if musicSec > 0 && hintMode == 0{
             audioPlayer.stop() // 지정한 시간이 지나면 스톱
-            audioPlayer.currentTime = startTime // 노래를 처음 시작 구간으로
             timer.invalidate()   // 타이머를 다시 0초로
         }
         else if musicSec > 2 && hintMode == 1{
             audioPlayer.stop() // 지정한 시간이 지나면 스톱
-            audioPlayer.currentTime = startTime // 노래를 처음 시작 구간으로
             timer.invalidate()   // 타이머를 다시 0초로
         }
         
@@ -198,6 +195,7 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     
     func playMusic(){
         timer.invalidate()
+        audioPlayer.currentTime = startTime
         musicSec = 0
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(GameController.counter), userInfo: nil, repeats:true)
         audioPlayer.play()
@@ -207,6 +205,7 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         stage += 1
         life = 3
         alertTest(songTitle: roundList[stage-1].title)
+        audioPlayer.currentTime = 0
         audioPlayer.play()
     }
     
