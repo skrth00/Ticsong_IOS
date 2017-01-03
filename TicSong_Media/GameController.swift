@@ -9,7 +9,7 @@
 
 /* 2017.01.03
  1. 노래 리스트업 10곡 선정 V
- 2. 점수 기능 (3번의 목숨이 있으며 1번에 맞추면 100점 2번에 맞추면 60점 3번에 맞추면 30점)
+ 2. 점수 기능 (3번의 목숨이 있으며 1번에 맞추면 100점 2번에 맞추면 60점 3번에 맞추면 30점) V
  3. 아이템 (1. 3초 재생 2. 타이틀 앞 글자 제공 3. 목숨 늘려주기)
  4. 노래 맞추면 노래 재생 (stop 도 생김) + widget visible /invisible 가능 하게
  5. 라운드 개념 넣기(5곡이 한 라운드로 가정하고 라운드 중간에 종료시 점수는 무효 / 모든 점수를 합산해서 ResultController로 전송)
@@ -45,8 +45,11 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     //var tempSong : Int = 0
     var hintMode: Int = 0 // 0 : 일반 재생 1 : 힌트 재생
     
+    var score : Int = 0
     var life : Int = 3
-    var count : Int = 0
+    
+    var item : Int = 3
+    var stage : Int = 1
     
     
     //MARK : 생명주기
@@ -55,7 +58,7 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         super.viewDidLoad()
         
         print(roundList)
-        setting(music: roundList[count].song)
+        setting(music: roundList[stage].song)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -68,7 +71,7 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         do {
             
 
-            //나중에 정리하면 될거 같아요 민섭님
+            //무음에서도 들리게 해주는 부분!! 나중에 정리하면 될거 같아요 민섭님
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
             
@@ -94,10 +97,17 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
 
     @IBAction func Play(_ sender: UIButton) {
         hintMode = 0
-        if(count < roundList.count){
+        if(stage < roundList.count){
             playMusic()
-            print("노래 제목 : " + roundList[count].title)
+            print("노래 제목 : " + roundList[stage].title)
+            print("life :"+life.description)
+            print("stage :"+stage.description)
+            print("score :"+score.description)
         }else{
+            
+            print("life :"+life.description)
+            print("마지막 stage :"+stage.description)
+            print("최종 점수 :"+score.description)
             showToast("그만!")
         }
         
@@ -109,20 +119,45 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     
     @IBAction func Check(_ sender: UIButton) {
       
-       if answer.text == roundList[count].title {
+       if answer.text == roundList[stage].title {
             showToast("정답입니다!")
-            count += 1
+        
+            nextStageInit()
+        
             answer.text = ""
-        if(count < roundList.count){
-            setting(music: roundList[count].song)
+        
+        if(life == 3){score += 100}
+        else if(life == 2){score += 60}
+        else if(life == 1){score += 30}
+        else{score += 0}
+        
+        
+        
+        //다음 노래 준비
+        if(stage < roundList.count){
+            setting(music: roundList[stage].song)
         }
         
-        }
-        else if answer.text != roundList[count].title{
+        }else if answer.text != roundList[stage].title{
             showToast("틀렸습니다!")
         
         
+        
              life -= 1
+        
+        if(life == 0){
+        
+            nextStageInit()
+            score += 0
+            
+            if(stage < roundList.count){
+                setting(music: roundList[stage].song)
+                print("life 0 되서 다음 스테이지 이동")
+            }
+            
+            
+        }
+        
         }
     }
     
@@ -135,11 +170,23 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     // 패스 버튼
     
     @IBAction func Pass(_ sender: UIButton) {
-        //tempSong = random()
-        count += 1
-        if(count < roundList.count){
-            setting(music: roundList[count].song)
+        
+        nextStageInit()
+        score += 0
+        
+        
+        if(stage < roundList.count){
+            setting(music: roundList[stage].song)
+            showToast("다음 스테이지 넘어감")
         }
+        
+        
+    }
+    
+    func nextStageInit(){
+    
+        stage += 1
+        life = 3
     }
     
     
