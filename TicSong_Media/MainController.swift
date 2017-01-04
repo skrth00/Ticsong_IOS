@@ -10,6 +10,15 @@ import UIKit
 
 class MainController: UIViewController {
     
+    
+    
+    @IBOutlet weak var startGameBtn: UIButton!
+    @IBOutlet weak var juke_shootingStar: UIImageView!
+    @IBOutlet weak var main_backgroundStar: UIImageView!
+    var pulseEffect : LFTPulseAnimation!
+    final let ROTATE_COUNT : Float = 9999999999
+
+    
     var arraySong : [String] = ["270052873","287320848","18560800","285714919","17179509","200018532","73847634","196942610","261595798","266565177"]
     var arrayTitle : [String] = ["야생화","숨","사랑한후에","꿈","눈의꽃","해줄수없는일","안녕사랑아","동경","화신","나를넘는다"]
     
@@ -42,7 +51,11 @@ class MainController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        aniBackgroundStar(pic: main_backgroundStar)
+        aniPulse(40)
+        aniPulse(80)
+        aniPulse(120)
+        aniPulse(160)
         // Do any additional setup after loading the view.
     }
 
@@ -74,6 +87,43 @@ class MainController: UIViewController {
         }
         
     }
+    
+
+    // 가운데 별 회전 애니메이션
+    
+    func aniBackgroundStar(pic : UIImageView){
+        let duration = 35.0
+        let delay = 0.0
+        let fullRotation = CGFloat(M_PI*2)
+        let options = UIViewKeyframeAnimationOptions.calculationModeLinear
+        
+        UIView.animateKeyframes(withDuration: duration, delay: delay, options:  options, animations: {
+            UIView.setAnimationRepeatCount(self.ROTATE_COUNT)
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/3, animations: {
+                pic.transform = CGAffineTransform(rotationAngle: (1/3) * fullRotation)
+            })
+            UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3, animations: {
+                pic.transform = CGAffineTransform(rotationAngle: (2/3) * fullRotation)
+            })
+            UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3, animations: {
+                pic.transform = CGAffineTransform(rotationAngle: (3/3) * fullRotation)
+            })
+            
+        })
+        
+    }
+    
+    // 물 퍼지는 듯한 애니메이션
+
+    func aniPulse(_ radius :Float){
+        pulseEffect = LFTPulseAnimation(repeatCount: Float.infinity, radius:CGFloat(radius), position:startGameBtn.center)
+        view.layer.insertSublayer(self.pulseEffect, below: juke_shootingStar.layer)
+    }
+    
+    
+
+    
+    
     
     
  

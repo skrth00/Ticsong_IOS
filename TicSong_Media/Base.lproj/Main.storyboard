@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,9 +23,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXI-x3-v9E">
-                                <rect key="frame" x="131" y="277" width="112" height="112"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="juke_shootingStar" translatesAutoresizingMaskIntoConstraints="NO" id="j0e-Xt-jMX">
+                                <rect key="frame" x="75" y="221" width="225" height="225"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="j0e-Xt-jMX" secondAttribute="height" id="diK-xb-vaa"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_backgroundStar" translatesAutoresizingMaskIntoConstraints="NO" id="gqP-c8-D6G">
+                                <rect key="frame" x="0.0" y="90" width="375" height="487"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gqP-c8-D6G" secondAttribute="height" multiplier="1:1.3" id="sF1-qT-tBn"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXI-x3-v9E">
+                                <rect key="frame" x="94" y="240" width="187.5" height="187.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CXI-x3-v9E" secondAttribute="height" id="weZ-z2-Bbj"/>
+                                </constraints>
                                 <state key="normal" title="Button" image="Tic_btn"/>
                                 <connections>
                                     <action selector="startGameBtn:" destination="mm2-tq-ShV" eventType="touchUpInside" id="5nk-16-Q4d"/>
@@ -31,8 +47,24 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.054947271943092346" green="0.13114801049232483" blue="0.23077297210693359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="j0e-Xt-jMX" firstAttribute="centerY" secondItem="xEo-bF-TKU" secondAttribute="centerY" id="5lU-QG-bei"/>
+                            <constraint firstItem="gqP-c8-D6G" firstAttribute="centerY" secondItem="xEo-bF-TKU" secondAttribute="centerY" id="9u5-A5-2y4"/>
+                            <constraint firstItem="j0e-Xt-jMX" firstAttribute="centerX" secondItem="xEo-bF-TKU" secondAttribute="centerX" id="A6d-sI-c5P"/>
+                            <constraint firstItem="CXI-x3-v9E" firstAttribute="centerY" secondItem="xEo-bF-TKU" secondAttribute="centerY" id="Ikn-rc-zIG"/>
+                            <constraint firstItem="gqP-c8-D6G" firstAttribute="width" secondItem="xEo-bF-TKU" secondAttribute="width" id="VxM-zZ-WF0"/>
+                            <constraint firstItem="CXI-x3-v9E" firstAttribute="centerX" secondItem="xEo-bF-TKU" secondAttribute="centerX" id="ZAP-6V-UmI"/>
+                            <constraint firstItem="gqP-c8-D6G" firstAttribute="centerX" secondItem="xEo-bF-TKU" secondAttribute="centerX" id="aeT-UB-RPX"/>
+                            <constraint firstItem="j0e-Xt-jMX" firstAttribute="width" secondItem="xEo-bF-TKU" secondAttribute="width" multiplier="0.6" id="mte-j8-E4i"/>
+                            <constraint firstItem="CXI-x3-v9E" firstAttribute="width" secondItem="xEo-bF-TKU" secondAttribute="width" multiplier="0.5" id="wY3-56-fVJ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="juke_shootingStar" destination="j0e-Xt-jMX" id="z6y-Fk-ncU"/>
+                        <outlet property="main_backgroundStar" destination="gqP-c8-D6G" id="hQg-aV-jY0"/>
+                        <outlet property="startGameBtn" destination="CXI-x3-v9E" id="8eo-pF-5mM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6B5-ll-45k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -110,6 +142,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Tic_btn" width="512" height="512"/>
+        <image name="Tic_btn" width="496" height="496"/>
+        <image name="juke_shootingStar" width="496" height="496"/>
+        <image name="main_backgroundStar" width="720" height="1280"/>
     </resources>
 </document>
