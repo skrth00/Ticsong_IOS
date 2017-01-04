@@ -62,6 +62,7 @@
                     </view>
                     <connections>
                         <outlet property="juke_shootingStar" destination="j0e-Xt-jMX" id="z6y-Fk-ncU"/>
+                        <outlet property="mainView" destination="xEo-bF-TKU" id="XTh-bK-QQl"/>
                         <outlet property="main_backgroundStar" destination="gqP-c8-D6G" id="hQg-aV-jY0"/>
                         <outlet property="startGameBtn" destination="CXI-x3-v9E" id="8eo-pF-5mM"/>
                     </connections>

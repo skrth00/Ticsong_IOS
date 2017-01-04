@@ -11,12 +11,12 @@ import UIKit
 class MainController: UIViewController {
     
     
+    @IBOutlet var mainView: UIView!
     
     @IBOutlet weak var startGameBtn: UIButton!
     @IBOutlet weak var juke_shootingStar: UIImageView!
     @IBOutlet weak var main_backgroundStar: UIImageView!
     var pulseEffect : LFTPulseAnimation!
-    final let ROTATE_COUNT : Float = 9999999999
 
     
     var arraySong : [String] = ["270052873","287320848","18560800","285714919","17179509","200018532","73847634","196942610","261595798","266565177"]
@@ -98,7 +98,7 @@ class MainController: UIViewController {
         let options = UIViewKeyframeAnimationOptions.calculationModeLinear
         
         UIView.animateKeyframes(withDuration: duration, delay: delay, options:  options, animations: {
-            UIView.setAnimationRepeatCount(self.ROTATE_COUNT)
+            UIView.setAnimationRepeatCount(Float.infinity)
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/3, animations: {
                 pic.transform = CGAffineTransform(rotationAngle: (1/3) * fullRotation)
             })
@@ -116,7 +116,7 @@ class MainController: UIViewController {
     // 물 퍼지는 듯한 애니메이션
 
     func aniPulse(_ radius :Float){
-        pulseEffect = LFTPulseAnimation(repeatCount: Float.infinity, radius:CGFloat(radius), position:startGameBtn.center)
+        pulseEffect = LFTPulseAnimation(repeatCount: Float.infinity, radius:CGFloat(radius), position:mainView.center)
         view.layer.insertSublayer(self.pulseEffect, below: juke_shootingStar.layer)
     }
     
