@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370899B91E1E393100AD8486 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370899B81E1E393100AD8486 /* LoginController.swift */; };
+		370899BB1E1E3DD100AD8486 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370899BA1E1E3DD100AD8486 /* KakaoOpenSDK.framework */; };
 		370B64BD1E1ACBB700CD2A4C /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370B64BC1E1ACBB700CD2A4C /* MainController.swift */; };
 		373D13001E19546900EA00C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D12FF1E19546900EA00C4 /* AppDelegate.swift */; };
 		373D13021E19546900EA00C4 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D13011E19546900EA00C4 /* GameController.swift */; };
@@ -18,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		370899B81E1E393100AD8486 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		370899BA1E1E3DD100AD8486 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
+		370899BC1E1E402B00AD8486 /* TicSong_Media-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TicSong_Media-Bridging-Header.h"; sourceTree = "<group>"; };
 		370B64BC1E1ACBB700CD2A4C /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		373D12FC1E19546900EA00C4 /* TicSong_Media.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicSong_Media.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		373D12FF1E19546900EA00C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +41,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				373D13121E1955FD00EA00C4 /* AVFoundation.framework in Frameworks */,
+				370899BB1E1E3DD100AD8486 /* KakaoOpenSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,7 +75,10 @@
 				373D13081E19546900EA00C4 /* LaunchScreen.storyboard */,
 				373D130B1E19546900EA00C4 /* Info.plist */,
 				370B64BC1E1ACBB700CD2A4C /* MainController.swift */,
+				370899BA1E1E3DD100AD8486 /* KakaoOpenSDK.framework */,
 				679D5E101E1C9D7E009F824B /* LFTPulseAnimation.swift */,
+				370899B81E1E393100AD8486 /* LoginController.swift */,
+				370899BC1E1E402B00AD8486 /* TicSong_Media-Bridging-Header.h */,
 			);
 			path = TicSong_Media;
 			sourceTree = "<group>";
@@ -151,6 +160,7 @@
 				679D5E111E1C9D7E009F824B /* LFTPulseAnimation.swift in Sources */,
 				370B64BD1E1ACBB700CD2A4C /* MainController.swift in Sources */,
 				373D13001E19546900EA00C4 /* AppDelegate.swift in Sources */,
+				370899B91E1E393100AD8486 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,15 +278,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 537GQ2WKJ4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TicSong_Media",
+				);
 				INFOPLIST_FILE = TicSong_Media/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jeon;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_BUNDLE_IDENTIFIER = wemetinsummer.org.kr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "TicSong_Media/TicSong_Media-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -286,15 +304,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 537GQ2WKJ4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TicSong_Media",
+				);
 				INFOPLIST_FILE = TicSong_Media/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jeon;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_BUNDLE_IDENTIFIER = wemetinsummer.org.kr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "TicSong_Media/TicSong_Media-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

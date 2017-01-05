@@ -42,6 +42,9 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     
     @IBOutlet weak var lifeThree: UIImageView!
     
+    
+    
+    
     var audioPlayer:AVAudioPlayer = AVAudioPlayer()
     
     var url : String!

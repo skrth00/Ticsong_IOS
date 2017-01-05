@@ -16,6 +16,11 @@ class MainController: UIViewController {
     @IBOutlet weak var startGameBtn: UIButton!
     @IBOutlet weak var juke_shootingStar: UIImageView!
     @IBOutlet weak var main_backgroundStar: UIImageView!
+    
+    @IBOutlet weak var profileImage: UIImageView!
+    
+    @IBOutlet weak var nickNameLabel: UILabel!
+    
     var pulseEffect : LFTPulseAnimation!
 
     
