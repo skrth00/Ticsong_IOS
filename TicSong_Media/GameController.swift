@@ -27,11 +27,13 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     
     // MARK: 멤버 필드
 
+    
     @IBOutlet weak var stageLabel: UILabel!
     
     @IBOutlet weak var answer: UITextField!
     
     
+    @IBOutlet weak var juke_shootingStar: UIImageView!
     
     
     var audioPlayer:AVAudioPlayer = AVAudioPlayer()
@@ -55,10 +57,18 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         super.viewDidLoad()
         
         
+        
         stageLabel.text = "STAGE \(stage+1)"
+        stageLabel.textColor = UIColor.white
+        stageLabel.font = UIFont.systemFont(ofSize: 30)
+        
         
         print(roundList)
         setting(music: roundList[stage].song)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        aniStar(pic: juke_shootingStar)
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -293,6 +303,31 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         alertWindow.windowLevel = UIWindowLevelAlert + 1
         alertWindow.makeKeyAndVisible()
         alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+    }
+    
+    
+    //MARK: ANIMATION
+    
+    func aniStar(pic : UIImageView){
+        let duration = 4.0
+        let delay = 0.0
+        let fullRotation = CGFloat(M_PI*2)
+        let options = UIViewKeyframeAnimationOptions.calculationModeLinear
+        
+        UIView.animateKeyframes(withDuration: duration, delay: delay, options:  options, animations: {
+            UIView.setAnimationRepeatCount(Float.infinity)
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/3, animations: {
+                pic.transform = CGAffineTransform(rotationAngle: -(1/3) * fullRotation)
+            })
+            UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3, animations: {
+                pic.transform = CGAffineTransform(rotationAngle: -(2/3) * fullRotation)
+            })
+            UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3, animations: {
+                pic.transform = CGAffineTransform(rotationAngle: -(3/3) * fullRotation)
+            })
+            
+        })
+        
     }
     
     

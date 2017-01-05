@@ -51,12 +51,16 @@ class MainController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        aniBackgroundStar(pic: main_backgroundStar)
+        
         aniPulse(40)
         aniPulse(80)
         aniPulse(120)
         aniPulse(160)
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        aniBackgroundStar(pic: main_backgroundStar)
     }
 
     override func didReceiveMemoryWarning() {
