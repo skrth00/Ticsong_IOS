@@ -33,6 +33,15 @@
 	<string>1</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>189eaaaa5883a59f527a745be30c1885</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>kakao189eaaaa5883a59f527a745be30c1885</string>
+		<string>kakaokompassauth</string>
+		<string>storykompassauth</string>
+		<string>kakaolink</string>
+		<string>kakaotalk-4.5.0</string>
+		<string>kakaostory-2.9.0</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -54,21 +63,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>kakao189eaaaa5883a59f527a745be30c1885</string>
-        <string>kakaokompassauth</string>
-        <string>storykompassauth</string>
-        <string>kakaolink</string>
-        <string>kakaotalk-4.5.0</string>
-        <string>kakaostory-2.9.0</string>
-    </array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
-   
-    
 </dict>
 </plist>

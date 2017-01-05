@@ -42,6 +42,8 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     
     @IBOutlet weak var lifeThree: UIImageView!
     
+
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     
     
@@ -67,8 +69,6 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         stageLabel.text = "STAGE \(stage+1)"
         stageLabel.textColor = UIColor.white
         stageLabel.font = UIFont.systemFont(ofSize: 30)
@@ -77,19 +77,55 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         print(roundList)
         setting(music: roundList[stage].song)
         
+        // 키패드에게 알림을 줘서 키보드가 보여질 때 사라질 때의 함수를 실행시킨다
+        NotificationCenter.default.addObserver(self, selector: #selector(GameController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(GameController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         //lifeCreate()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         //aniStar(pic: juke_shootingStar)
-        
         //lifeCreate()
-
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // 다른 화면 누르면 키패드 사라지기
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with: UIEvent?) {
+        answer.endEditing(true) // textBox는 textFiled 오브젝트 outlet 연동할때의 이름.
+    }
+    
+    // 키보드가 보여지면..
+    func keyboardWillShow(notification:NSNotification) {
+        adjustingHeight(show: true, notification: notification)
+        
+    }
+    
+    // 키보드가 사라지면..
+    func keyboardWillHide(notification:NSNotification) {
+        adjustingHeight(show: false, notification: notification)
+        
+    }
+    
+    // 높이를 조정한다 ..
+    func adjustingHeight(show:Bool, notification:NSNotification) {
+        var userInfo = notification.userInfo!
+        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let changeInHeight = (keyboardFrame.height) * (show ? 1 : -1)
+        UIView.animate(withDuration: animationDurarion, animations: { () -> Void in
+            self.bottomConstraint.constant += changeInHeight
+        })
+        
+    }
+    
+    
+
     
    
     
