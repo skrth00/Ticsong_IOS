@@ -32,9 +32,15 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     
     @IBOutlet weak var answer: UITextField!
     
-    
     @IBOutlet weak var juke_shootingStar: UIImageView!
     
+    @IBOutlet weak var escapeBtn: UIButton!
+    
+    @IBOutlet weak var lifeOne: UIImageView!
+    
+    @IBOutlet weak var lifeTwo: UIImageView!
+    
+    @IBOutlet weak var lifeThree: UIImageView!
     
     var audioPlayer:AVAudioPlayer = AVAudioPlayer()
     
@@ -51,6 +57,8 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     var stage : Int = 0
     var item : Int = 3
     
+    
+    
     //MARK: 생명주기
     
     override func viewDidLoad() {
@@ -65,9 +73,13 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         
         print(roundList)
         setting(music: roundList[stage].song)
+        
+        //lifeCreate()
     }
     override func viewDidAppear(_ animated: Bool) {
-        aniStar(pic: juke_shootingStar)
+        //aniStar(pic: juke_shootingStar)
+        
+        //lifeCreate()
 
     }
     override func didReceiveMemoryWarning() {
@@ -87,6 +99,8 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         hintMode = 0
         if(stage < roundList.count){
             playMusic()
+            aniStar(pic: juke_shootingStar, aniDuration: 1.0)
+            
             print("노래 제목 : " + roundList[stage].title)
             print("life :"+life.description)
             print("stage :"+stage.description)
@@ -135,11 +149,13 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         }
         
         }
+        lifeCreate()
     }
     
     @IBAction func Hint(_ sender: UIButton) {
         hintMode = 1
         playMusic()
+        aniStar(pic: juke_shootingStar, aniDuration: 3.0)
     }
     
     
@@ -154,6 +170,12 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     }
     
    
+    @IBAction func Escape(_ sender: UIButton) {
+        
+        escapeAlert(score: score)
+        
+    }
+    
     
    //MARK: 노래 재생 설정
     
@@ -217,6 +239,10 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         alertTest(songTitle: roundList[stage-1].title)
         audioPlayer.currentTime = 0
         audioPlayer.play()
+        
+        //lifeCreate()
+        // Alert 띄우고 별똥별 도는거 보류
+        //aniStar(pic: juke_shootingStar, aniDuration: 4.0)
     }
     
     func nextSong(){
@@ -230,6 +256,7 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
             stageLabel.text = "STAGE \(stage+1)"
             setting(music: roundList[stage].song)
             print("다음 노래 준비!")
+            
         }else{
             //모든 스테이지 종료 시 일단은 라벨 제거함
             //Alert창 띄워서 결과보여주고 확인누르면 메인으로 돌아가게 만들까?
@@ -237,6 +264,20 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
             resultAlert(score: score)
             
         }
+        lifeCreate()
+    }
+    
+    
+    //MARK: Life Reloading
+    
+    func lifeCreate(){
+        if(life == 3){lifeThree.isHidden = false
+                     lifeTwo.isHidden = false
+                    lifeOne.isHidden = false}
+        else if(life == 2){lifeThree.isHidden = true}
+        else if(life == 1){lifeTwo.isHidden = true}
+        else{lifeOne.isHidden = true}
+        
     }
     
     // MARK: 여러가지 Alert
@@ -283,7 +324,7 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     
     func resultAlert(score:Int){
         
-        let alertView = UIAlertController(title: "RESULT", message: "당신의 점수는 \(score)입니다!", preferredStyle: .alert)
+        let alertView = UIAlertController(title: "RESULT", message: "당신의 점수는 \(score)점 입니다!", preferredStyle: .alert)
         
 //        let image = UIImage(named: "album")
 //        let realiamge = UIImageView(image: image)
@@ -305,17 +346,40 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
     }
     
+    func escapeAlert(score:Int){
+        
+        let alertView = UIAlertController(title: "나가기", message: "현재 당신의 점수는 \(score)점 입니다.\n 정말 나가시겠습니까?", preferredStyle: .alert)
+        
+        
+        
+        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            alertView.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in print("cancel button clicked")}
+        
+        alertView.addAction(action)
+        alertView.addAction(cancelAction)
+        
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+    }
     
     //MARK: ANIMATION
     
-    func aniStar(pic : UIImageView){
-        let duration = 4.0
+    func aniStar(pic : UIImageView, aniDuration : Double){
+        var duration = 1.0
+        duration = aniDuration
         let delay = 0.0
         let fullRotation = CGFloat(M_PI*2)
         let options = UIViewKeyframeAnimationOptions.calculationModeLinear
         
         UIView.animateKeyframes(withDuration: duration, delay: delay, options:  options, animations: {
-            UIView.setAnimationRepeatCount(Float.infinity)
+            //UIView.setAnimationRepeatCount(1)
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/3, animations: {
                 pic.transform = CGAffineTransform(rotationAngle: -(1/3) * fullRotation)
             })

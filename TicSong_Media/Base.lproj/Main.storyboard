@@ -44,7 +44,7 @@
                                 <state key="normal" title="Button" image="Tic_btn"/>
                                 <connections>
                                     <action selector="startGameBtn:" destination="mm2-tq-ShV" eventType="touchUpInside" id="5nk-16-Q4d"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="MainToGameSegue" id="ozH-5r-uaW"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="MainToGameSegue" modalTransitionStyle="flipHorizontal" id="ozH-5r-uaW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -94,35 +94,12 @@
                                     <action selector="Play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pih-wI-OcX"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STAGE Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="DU5-52-hOP">
-                                <rect key="frame" x="16" y="26" width="208" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="juke_shootingStar" translatesAutoresizingMaskIntoConstraints="NO" id="1mW-rm-6rN">
                                 <rect key="frame" x="75" y="221" width="225" height="225"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="1mW-rm-6rN" secondAttribute="height" id="M96-XO-hnW"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sQn-Bn-cxL">
-                                <rect key="frame" x="1" y="97" width="318" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHL-vv-zW1">
-                                <rect key="frame" x="319" y="97" width="57" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="정답확인"/>
-                                <connections>
-                                    <action selector="Check:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qcg-6K-Rtb"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4EC-s5-t9V">
                                 <rect key="frame" x="16" y="446" width="86.5" height="86.5"/>
                                 <constraints>
@@ -143,39 +120,124 @@
                                     <action selector="Pass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OpS-UG-PqS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ON4-uv-OKQ">
+                                <rect key="frame" x="16" y="23" width="37.5" height="37.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ON4-uv-OKQ" secondAttribute="height" id="Ah6-aC-WOd"/>
+                                </constraints>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="Escape:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0xN-wM-KO8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STAGE Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="DU5-52-hOP">
+                                <rect key="frame" x="122" y="28" width="131" height="22"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DU5-52-hOP" secondAttribute="height" multiplier="6:1" id="dUE-Gu-LiW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L4x-Cy-4O2">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem width="250" style="plain" id="Nkd-cS-KcB">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="sQn-Bn-cxL">
+                                            <rect key="frame" x="16" y="7" width="250" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="azD-V9-VyL"/>
+                                    <barButtonItem style="plain" id="sJw-eM-EDL">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" id="nHL-vv-zW1">
+                                            <rect key="frame" x="324" y="7" width="35" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="send"/>
+                                            <connections>
+                                                <action selector="Check:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qcg-6K-Rtb"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ywM-E1-LvU">
+                                <rect key="frame" x="321.5" y="221" width="37.5" height="112.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="Llz-1L-Xv3">
+                                        <rect key="frame" x="0.0" y="0.0" width="37.5" height="37.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Llz-1L-Xv3" secondAttribute="height" id="AVf-Ms-3dn"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="Urf-zJ-IYI">
+                                        <rect key="frame" x="0.0" y="37.5" width="37.5" height="37.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Urf-zJ-IYI" secondAttribute="height" id="9BE-D6-O3L"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="rka-pt-cwQ">
+                                        <rect key="frame" x="0.0" y="75" width="37.5" height="37.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="rka-pt-cwQ" secondAttribute="height" id="iPS-FZ-t04"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.054947271943092346" green="0.13114801049232483" blue="0.23077297210693359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4EC-s5-t9V" firstAttribute="top" secondItem="1mW-rm-6rN" secondAttribute="bottom" id="1x6-7n-j9G"/>
+                            <constraint firstItem="DU5-52-hOP" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.35" id="4Ar-Ql-kEI"/>
+                            <constraint firstItem="ywM-E1-LvU" firstAttribute="top" secondItem="Hcq-sr-E1l" secondAttribute="bottom" constant="165" id="7dj-ck-dj8"/>
                             <constraint firstItem="Hcq-sr-E1l" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="6" id="AnT-CW-kvQ"/>
+                            <constraint firstItem="ywM-E1-LvU" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="BBr-Cy-mNN"/>
                             <constraint firstItem="4Lr-rt-wW2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DFz-cS-gh4"/>
                             <constraint firstItem="Hcq-sr-E1l" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Dok-EP-rNq"/>
+                            <constraint firstItem="ywM-E1-LvU" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.1" id="NaI-Do-4of"/>
+                            <constraint firstItem="DU5-52-hOP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Raw-6C-tEU"/>
                             <constraint firstItem="1mW-rm-6rN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vax-tE-Oo2"/>
                             <constraint firstItem="4EC-s5-t9V" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.23" id="Yih-G0-p99"/>
                             <constraint firstItem="1mW-rm-6rN" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.6" id="bxf-ZL-kmG"/>
+                            <constraint firstItem="ON4-uv-OKQ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.1" id="fBb-2U-trX"/>
                             <constraint firstItem="Hcq-sr-E1l" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.2" id="g0C-Km-o2S"/>
                             <constraint firstItem="1mW-rm-6rN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gus-pf-hVA"/>
                             <constraint firstItem="4Lr-rt-wW2" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="h2g-vb-eqh"/>
+                            <constraint firstItem="DU5-52-hOP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="hoz-nE-Edg"/>
+                            <constraint firstItem="ON4-uv-OKQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="3" id="jVE-XD-Ujg"/>
                             <constraint firstItem="4EC-s5-t9V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="k69-gm-9mU"/>
+                            <constraint firstItem="ON4-uv-OKQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="kzq-DA-jgU"/>
                             <constraint firstItem="4Lr-rt-wW2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lCO-xL-c9q"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="answer" destination="sQn-Bn-cxL" id="5y1-QT-uRl"/>
+                        <outlet property="escapeBtn" destination="ON4-uv-OKQ" id="gHg-eS-PSM"/>
                         <outlet property="juke_shootingStar" destination="1mW-rm-6rN" id="evm-5B-Nh9"/>
+                        <outlet property="lifeOne" destination="Llz-1L-Xv3" id="px0-m1-V91"/>
+                        <outlet property="lifeThree" destination="rka-pt-cwQ" id="zYu-Ra-MUC"/>
+                        <outlet property="lifeTwo" destination="Urf-zJ-IYI" id="wI2-8n-6ip"/>
                         <outlet property="stageLabel" destination="DU5-52-hOP" id="69H-Eg-S7U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="431.19999999999999" y="80.50974512743629"/>
+            <point key="canvasLocation" x="428" y="78.710644677661179"/>
         </scene>
     </scenes>
     <resources>
         <image name="Tic_btn" width="496" height="496"/>
+        <image name="close" width="35" height="35"/>
         <image name="hintItem" width="127" height="127"/>
         <image name="juke_shootingStar" width="496" height="496"/>
+        <image name="life" width="35" height="35"/>
         <image name="main_backgroundStar" width="720" height="1280"/>
         <image name="pass" width="50" height="21"/>
+        <image name="send" width="35" height="30"/>
     </resources>
 </document>
