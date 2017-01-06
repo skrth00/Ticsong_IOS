@@ -34,6 +34,8 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     
     @IBOutlet weak var juke_shootingStar: UIImageView!
     
+    @IBOutlet weak var main_backgroundStar: UIImageView!
+    
     @IBOutlet weak var escapeBtn: UIButton!
     
     @IBOutlet weak var lifeOne: UIImageView!
@@ -76,17 +78,19 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         
         print(roundList)
         setting(music: roundList[stage].song)
+    
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // 배경화면 돌아가게 한다.
+        aniBackgroundStar(pic: main_backgroundStar)
+
         
         // 키패드에게 알림을 줘서 키보드가 보여질 때 사라질 때의 함수를 실행시킨다
         NotificationCenter.default.addObserver(self, selector: #selector(GameController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(GameController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        //lifeCreate()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        //aniStar(pic: juke_shootingStar)
-        //lifeCreate()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -98,6 +102,7 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with: UIEvent?) {
         answer.endEditing(true) // textBox는 textFiled 오브젝트 outlet 연동할때의 이름.
+        self.bottomConstraint.constant = 0
     }
     
     // 키보드가 보여지면..
@@ -116,10 +121,11 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     func adjustingHeight(show:Bool, notification:NSNotification) {
         var userInfo = notification.userInfo!
         let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
         let changeInHeight = (keyboardFrame.height) * (show ? 1 : -1)
-        UIView.animate(withDuration: animationDurarion, animations: { () -> Void in
+        UIView.animate(withDuration: animationDuration, animations: { () -> Void in
             self.bottomConstraint.constant += changeInHeight
+            
         })
         
     }
@@ -158,13 +164,16 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
    
     
     @IBAction func Check(_ sender: UIButton) {
-      
+        
+        
        if answer.text == roundList[stage].title {
-            showToast("정답입니다!")
         
             nextStageInit()
-        
             answer.text = ""
+        
+            self.answer.endEditing(true)
+            showToast("정답입니다!")
+        
         
         if(life == 3){score += 100}
         else if(life == 2){score += 60}
@@ -174,19 +183,11 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         
         }else if answer.text != roundList[stage].title{
             showToast("틀렸습니다!")
-        
-        
-        
              life -= 1
-        
         if(life == 0){
-        
             nextStageInit()
             score += 0
-            
-            
         }
-        
         }
         lifeCreate()
     }
@@ -275,10 +276,10 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
     func nextStageInit(){
         stage += 1
         life = 3
-        alertTest(songTitle: roundList[stage-1].title)
+        stageFinishAlert(songTitle: roundList[stage-1].title)
+        
         audioPlayer.currentTime = 0
         audioPlayer.play()
-        
         //lifeCreate()
         // Alert 띄우고 별똥별 도는거 보류
         //aniStar(pic: juke_shootingStar, aniDuration: 4.0)
@@ -333,7 +334,7 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         }
     }
     
-    func alertTest(songTitle:String){
+    func stageFinishAlert(songTitle:String){
         
         let alertView = UIAlertController(title: songTitle, message: "소울트리~", preferredStyle: .alert)
         
@@ -356,6 +357,8 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         alertWindow.windowLevel = UIWindowLevelAlert + 1
         alertWindow.makeKeyAndVisible()
         alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+        
+
     }
     
   
@@ -432,6 +435,31 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         })
         
     }
+    
+    // 가운데 별 회전 애니메이션
+    
+    func aniBackgroundStar(pic : UIImageView){
+        let duration = 35.0
+        let delay = 0.0
+        let fullRotation = CGFloat(M_PI*2)
+        let options = UIViewKeyframeAnimationOptions.calculationModeLinear
+        
+        UIView.animateKeyframes(withDuration: duration, delay: delay, options:  options, animations: {
+            UIView.setAnimationRepeatCount(Float.infinity)
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/3, animations: {
+                pic.transform = CGAffineTransform(rotationAngle: (1/3) * fullRotation)
+            })
+            UIView.addKeyframe(withRelativeStartTime: 1/3, relativeDuration: 1/3, animations: {
+                pic.transform = CGAffineTransform(rotationAngle: (2/3) * fullRotation)
+            })
+            UIView.addKeyframe(withRelativeStartTime: 2/3, relativeDuration: 1/3, animations: {
+                pic.transform = CGAffineTransform(rotationAngle: (3/3) * fullRotation)
+            })
+            
+        })
+        
+    }
+
     
     
     

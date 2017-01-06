@@ -10,6 +10,7 @@ import UIKit
 
 class MainController: UIViewController {
     
+    // MARK: 멤버 필드
     
     @IBOutlet var mainView: UIView!
     
@@ -18,14 +19,66 @@ class MainController: UIViewController {
     @IBOutlet weak var main_backgroundStar: UIImageView!
     
     @IBOutlet weak var profileImage: UIImageView!
-    
     @IBOutlet weak var nickNameLabel: UILabel!
     
     var pulseEffect : LFTPulseAnimation!
+    
+   
+    var receivedName : String = ""
+    var receivedProfImg : UIImage = UIImage(named : "album")!
 
     
     var arraySong : [String] = ["270052873","287320848","18560800","285714919","17179509","200018532","73847634","196942610","261595798","266565177"]
     var arrayTitle : [String] = ["야생화","숨","사랑한후에","꿈","눈의꽃","해줄수없는일","안녕사랑아","동경","화신","나를넘는다"]
+    
+    
+    // MARK: - 생명주기
+    
+override func viewDidLoad() {
+        super.viewDidLoad()
+    
+    nickNameLabel.textColor = UIColor.white
+    nickNameLabel.font = UIFont.systemFont(ofSize: 30)
+    
+    profileImage.layer.borderWidth = 1
+    profileImage.layer.masksToBounds = false
+    profileImage.layer.borderColor = UIColor.black.cgColor
+    profileImage.layer.cornerRadius = profileImage.frame.height/2
+    profileImage.clipsToBounds = true
+    
+    
+        aniPulse(90)
+        aniPulse(125)
+        aniPulse(160)
+        aniPulse(170)
+        
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        aniBackgroundStar(pic: main_backgroundStar)
+        
+        
+        
+        nickNameLabel.text = receivedName
+        profileImage.image = receivedProfImg
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    @IBAction func startGameBtn(_ sender: UIButton) {
+        
+        self.performSegue(withIdentifier: "MainToGameSegue", sender: self)
+        
+    }
+    
+    // MARK: - Method
     
     func random() -> Int {
         let random = Int(arc4random_uniform(UInt32(arraySong.count)))
@@ -50,36 +103,6 @@ class MainController: UIViewController {
         return list
     }
     
-    
-    
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        aniPulse(40)
-        aniPulse(80)
-        aniPulse(120)
-        aniPulse(160)
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        aniBackgroundStar(pic: main_backgroundStar)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    @IBAction func startGameBtn(_ sender: UIButton) {
-        
-        self.performSegue(withIdentifier: "MainToGameSegue", sender: self)
-        
-    }
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -98,6 +121,7 @@ class MainController: UIViewController {
     }
     
 
+    // MARK: - Animation
     // 가운데 별 회전 애니메이션
     
     func aniBackgroundStar(pic : UIImageView){

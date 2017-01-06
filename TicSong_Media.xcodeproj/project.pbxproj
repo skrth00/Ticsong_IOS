@@ -70,14 +70,14 @@
 			children = (
 				373D12FF1E19546900EA00C4 /* AppDelegate.swift */,
 				373D13011E19546900EA00C4 /* GameController.swift */,
-				373D13031E19546900EA00C4 /* Main.storyboard */,
-				373D13061E19546900EA00C4 /* Assets.xcassets */,
-				373D13081E19546900EA00C4 /* LaunchScreen.storyboard */,
-				373D130B1E19546900EA00C4 /* Info.plist */,
 				370B64BC1E1ACBB700CD2A4C /* MainController.swift */,
-				370899BA1E1E3DD100AD8486 /* KakaoOpenSDK.framework */,
-				679D5E101E1C9D7E009F824B /* LFTPulseAnimation.swift */,
 				370899B81E1E393100AD8486 /* LoginController.swift */,
+				373D13031E19546900EA00C4 /* Main.storyboard */,
+				373D13081E19546900EA00C4 /* LaunchScreen.storyboard */,
+				679D5E101E1C9D7E009F824B /* LFTPulseAnimation.swift */,
+				373D13061E19546900EA00C4 /* Assets.xcassets */,
+				373D130B1E19546900EA00C4 /* Info.plist */,
+				370899BA1E1E3DD100AD8486 /* KakaoOpenSDK.framework */,
 				370899BC1E1E402B00AD8486 /* TicSong_Media-Bridging-Header.h */,
 			);
 			path = TicSong_Media;
@@ -115,7 +115,7 @@
 				TargetAttributes = {
 					373D12FB1E19546900EA00C4 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = VANL3XS874;
+						DevelopmentTeam = 537GQ2WKJ4;
 						LastSwiftMigration = 0820;
 					};
 				};
@@ -281,7 +281,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VANL3XS874;
+				DEVELOPMENT_TEAM = 537GQ2WKJ4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TicSong_Media",
@@ -290,7 +290,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = yoon;
+				PRODUCT_BUNDLE_IDENTIFIER = wemetinsummer.org.kr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TicSong_Media/TicSong_Media-Bridging-Header.h";
@@ -307,7 +307,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VANL3XS874;
+				DEVELOPMENT_TEAM = 537GQ2WKJ4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TicSong_Media",
@@ -316,7 +316,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_BUNDLE_IDENTIFIER = yoon;
+				PRODUCT_BUNDLE_IDENTIFIER = wemetinsummer.org.kr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TicSong_Media/TicSong_Media-Bridging-Header.h";

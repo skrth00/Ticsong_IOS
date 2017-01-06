@@ -10,16 +10,17 @@ import UIKit
 
 class LoginController: UIViewController {
     
-    @IBOutlet weak var textView: UILabel!
-    
-    @IBOutlet weak var imageView: UIImageView!
     
 
-    @IBOutlet weak var image2View: UIImageView!
     
+    var profileIMG:UIImage = UIImage(named: "album")!
+    var name:String = "default"
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         // Do any additional setup after loading the view.
     }
@@ -29,14 +30,41 @@ class LoginController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        
+        if segue.identifier == "LoginToMainSegue"
+        {
+            
+            
+            
+            let destination = segue.destination as! MainController
+            
+            destination.receivedProfImg = profileIMG
+            destination.receivedName = name
+          
+        }
+        
+    }
+    
 
     @IBAction func kakaoLoginClicked(_ sender: UIButton) {
         
-        let session: KOSession = KOSession.shared();
-        if session.isOpen() {
-            session.close()
-        }
-        session.presentingViewController = self
+        setKakaoProf()
+        
+
+    }
+    
+    func setKakaoProf(){
+        
+        let session :KOSession = KOSession.shared()
+    
+            if session.isOpen() {
+                session.close()
+            }
+            session.presentingViewController = self
+        
         session.open(completionHandler: { (error) -> Void in
             if error != nil{
                 print(error?.localizedDescription as Any) // any 원래 없어야함
@@ -47,16 +75,19 @@ class LoginController: UIViewController {
                             let kakao : KOUser = profile as! KOUser
                             //고유 ID값
                             print(kakao.id)
+                            
                             if let value = kakao.properties["nickname"] as? String{
                                 
-                                self.textView.text = "nickname : \(value)\r\n"
+                                self.name = "\(value)"
                             }
                             if let value = kakao.properties["profile_image"] as? String{
-                                self.imageView.image = UIImage(data: NSData(contentsOf: NSURL(string: value)! as URL)! as Data)
+                                
+                                self.profileIMG = UIImage(data: NSData(contentsOf: NSURL(string: value)! as URL)! as Data)!
+                                
                             }
-                            if let value = kakao.properties["thumbnail_image"] as? String{
-                                self.image2View.image = UIImage(data: NSData(contentsOf: NSURL(string: value)! as URL)! as Data)
-                            }
+                            
+                            self.performSegue(withIdentifier: "LoginToMainSegue", sender: self)
+                            
                         })
                     }else{
                         
@@ -66,17 +97,10 @@ class LoginController: UIViewController {
                 print("isNotOpen")
             }
         })
-
+    
         
-    }
-    /*
-    // MARK: - Navigation
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }
