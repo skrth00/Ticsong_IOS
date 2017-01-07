@@ -75,8 +75,9 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         stageLabel.textColor = UIColor.white
         stageLabel.font = UIFont.systemFont(ofSize: 30)
         
-        
+        //한번더 viewDidLoad()에서 프린트 되는데 보류.... 세팅이 다시되는거 같진않음...
         print(roundList)
+        
         setting(music: roundList[stage].song)
     
         
@@ -294,6 +295,7 @@ class GameController: UIViewController , AVAudioPlayerDelegate {
         if(stage < roundList.count){
             
             stageLabel.text = "STAGE \(stage+1)"
+            answer.text = ""
             setting(music: roundList[stage].song)
             print("다음 노래 준비!")
             
